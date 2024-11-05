@@ -18,12 +18,12 @@ const App = () => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      backgroundColor: '#0e0e0e',
+      backgroundColor: '#040404',
       color: '#f0f0f0',
       minHeight: '100vh',
       padding: '20px'
     }}>
-      <h1>Error Tracker</h1>
+      <h1>Error Buddy</h1>
       <ErrorForm addError={addError} />
       <ErrorList errors={errors} />
     </div>
