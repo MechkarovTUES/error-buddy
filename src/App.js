@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ErrorForm from './components/ErrorForm';
+import ErrorList from './components/ErrorList';
 
-function App() {
+const App = () => {
+  const [errors, setErrors] = useState([]);
+
+  const addError = (message) => {
+    const newError = {
+      message,
+      timestamp: new Date().toLocaleString(),  // Add the current date and time
+    };
+    setErrors([newError, ...errors]);  // Add new errors at the top of the list
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: '#0e0e0e',
+      color: '#f0f0f0',
+      minHeight: '100vh',
+      padding: '20px'
+    }}>
+      <h1>Error Tracker</h1>
+      <ErrorForm addError={addError} />
+      <ErrorList errors={errors} />
     </div>
   );
-}
+};
 
 export default App;
