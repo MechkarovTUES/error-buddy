@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ErrorForm from './components/ErrorForm';
+import axios from 'axios';
 import ErrorList from './components/ErrorList';
 
 const App = () => {
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/errors')
+      .then(response => setErrors(response.data))
+      .catch(error => console.error(error));
+  }, []);
 
   const addError = (message) => {
     const newError = {
       message,
       timestamp: new Date().toLocaleString(),  // Add the current date and time
     };
+    axios.post('http://localhost:5000/api/errors', newError)
+      .then(response => setErrors([response.data, ...errors]))
+      .catch(error => console.error(error));
     setErrors([newError, ...errors]);  // Add new errors at the top of the list
   };
 
