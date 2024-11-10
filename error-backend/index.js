@@ -1,8 +1,11 @@
-// index.js
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Use CORS middleware to allow all origins
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://mongo:27017/errorTracker', {

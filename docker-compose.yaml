@@ -28,6 +28,8 @@ services:
       - "3001:80"
     depends_on:
       - backend
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:3000
 
 volumes:
   mongo-data:

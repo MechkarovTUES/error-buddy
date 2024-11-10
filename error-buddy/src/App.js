@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ErrorForm from './components/ErrorForm';
 import ErrorCard from './components/ErrorCard';
+import config from './config';
 
 const App = () => {
   const [errors, setErrors] = useState([]);
 
   // Fetch errors from backend
   useEffect(() => {
-    fetch('http://localhost:3000/errors')
+    fetch(`${config.backendUrl}/errors`)
       .then(res => res.json())
       .then(data => setErrors(data))
       .catch(err => console.error('Error fetching data:', err));
@@ -16,7 +17,7 @@ const App = () => {
   // Add new error
   const addError = (message) => {
     console.log('Adding error:', message);
-    fetch('http://localhost:3000/errors', {
+    fetch(`${config.backendUrl}/errors`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,7 +30,15 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: '#040404',
+      color: '#f0f0f0',
+      minHeight: '100vh',
+      padding: '20px'
+    }}>
       <h1>Error Tracker</h1>
       <ErrorForm addError={addError} />
       <div>
