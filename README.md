@@ -23,7 +23,7 @@ npm i cors
 ### 3. Run the Application with Docker Compose
 From the `error-buddy` root directory, use Docker Compose to build and start the services:
 
-docker-compose up –build
+docker-compose up –-build
 
 This command will:
 - Build and start the MongoDB database, backend, and frontend services.
